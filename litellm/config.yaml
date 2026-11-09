@@ -1,0 +1,42 @@
+# Model names on the left (model_name) are what clients ask for.
+# Change the right side (ollama_chat/<tag>) to the tags you see with `ollama list` on the deep server.
+# Only keep models that support tool calling in Ollama.
+
+model_list:
+  - model_name: llama3.1
+    litellm_params:
+      model: ollama_chat/llama3.1:8b
+      api_base: os.environ/OLLAMA_API_BASE
+      timeout: 120
+
+  - model_name: qwen3-4b
+    litellm_params:
+      model: ollama_chat/qwen3:4b-instruct
+      api_base: os.environ/OLLAMA_API_BASE
+      timeout: 120
+
+  - model_name: mistral
+    litellm_params:
+      model: ollama_chat/mistral:latest
+      api_base: os.environ/OLLAMA_API_BASE
+      timeout: 120
+
+  # Stable alias the robot uses. Swap the backing model here without touching robot code.
+  - model_name: robot-default
+    litellm_params:
+      model: ollama_chat/llama3.1:8b
+      api_base: os.environ/OLLAMA_API_BASE
+      timeout: 60
+
+router_settings:
+  num_retries: 1
+  # If the default model fails or times out, try the next one automatically
+  fallbacks:
+    - robot-default: ["qwen3-4b", "mistral"]
+
+litellm_settings:
+  drop_params: true          # ignore OpenAI params Ollama does not understand
+  request_timeout: 120
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY

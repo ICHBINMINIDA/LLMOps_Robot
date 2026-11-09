@@ -1,0 +1,6 @@
+.env
+*.bak
+results/*
+!results/.gitkeep
+!results/20261109-202521/
+__pycache__/

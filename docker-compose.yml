@@ -1,0 +1,66 @@
+name: robot-llmops
+
+services:
+  # Unified OpenAI-compatible gateway in front of Ollama (routing, fallback, keys)
+  litellm:
+    image: ghcr.io/berriai/litellm:main-stable
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    env_file: .env
+    volumes:
+      - ./litellm/config.yaml:/app/config.yaml:ro
+    ports:
+      - "4002:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # needed for the SSH-tunnel setup on Linux
+    restart: unless-stopped
+
+  # Collects nvidia-smi (via SSH) + Ollama /api/ps and exposes them to Prometheus
+  # Disabled by default on Windows: it runs on the host instead (start-exporter.ps1).
+  # Enable with: docker compose --profile docker-exporter up -d
+  gpu-exporter:
+    profiles: ["docker-exporter"]
+    build: ./gpu-exporter
+    env_file: .env
+    environment:
+      OLLAMA_API_BASE: ${OLLAMA_API_BASE}
+    volumes:
+      - ~/.ssh:/root/.ssh:ro                  # your SSH key for the deep server
+    ports:
+      - "9400:9400"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Receives benchmark results (latency, tokens/s, tool-call accuracy)
+  pushgateway:
+    image: prom/pushgateway:v1.9.0
+    ports:
+      - "9091:9091"
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/robot-llmops.json
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    depends_on: [prometheus]
+    restart: unless-stopped
+
+volumes:
+  prometheus-data:
+  grafana-data:

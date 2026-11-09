@@ -1,0 +1,33 @@
+{"id": "nav-01", "text": "Go to the kitchen.", "tool": "navigate_to", "args": {"location": "kitchen"}}
+{"id": "nav-02", "text": "Please drive over to the office.", "tool": "navigate_to", "args": {"location": "office"}}
+{"id": "nav-03", "text": "Head to the front door, someone is ringing.", "tool": "navigate_to", "args": {"location": "entrance"}}
+{"id": "nav-04", "text": "Your battery is low, go charge yourself.", "tool": "navigate_to", "args": {"location": "charging_station"}}
+{"id": "nav-05", "text": "Come to the living room.", "tool": "navigate_to", "args": {"location": "living_room"}}
+{"id": "nav-06", "text": "Fahr bitte in die Küche.", "tool": "navigate_to", "args": {"location": "kitchen"}}
+{"id": "nav-07", "text": "Geh ins Büro.", "tool": "navigate_to", "args": {"location": "office"}}
+{"id": "nav-08", "text": "Can you go where we cook food?", "tool": "navigate_to", "args": {"location": "kitchen"}}
+{"id": "nav-09", "text": "Return to your dock.", "tool": "navigate_to", "args": {"location": "charging_station"}}
+{"id": "vis-01", "text": "What do you see right now?", "tool": "describe_scene", "args": {}}
+{"id": "vis-02", "text": "Describe what's in front of you.", "tool": "describe_scene", "args": {}}
+{"id": "vis-03", "text": "Is there anything on the table in front of you?", "tool": "describe_scene", "args": {}}
+{"id": "vis-04", "text": "Was siehst du gerade?", "tool": "describe_scene", "args": {}}
+{"id": "pick-01", "text": "Pick up the cup.", "tool": "pick_object", "args": {"object": "cup"}}
+{"id": "pick-02", "text": "Grab that bottle for me.", "tool": "pick_object", "args": {"object": "bottle"}}
+{"id": "pick-03", "text": "Take the book.", "tool": "pick_object", "args": {"object": "book"}}
+{"id": "pick-04", "text": "Nimm die Fernbedienung.", "tool": "pick_object", "args": {"object": "remote"}}
+{"id": "pick-05", "text": "I'm hungry, grab the apple in front of you.", "tool": "pick_object", "args": {"object": "apple"}}
+{"id": "place-01", "text": "Put the cup in the kitchen.", "tool": "place_object", "args": {"object": "cup", "location": "kitchen"}}
+{"id": "place-02", "text": "Leave the book in the office.", "tool": "place_object", "args": {"object": "book", "location": "office"}}
+{"id": "place-03", "text": "Drop the remote off in the living room.", "tool": "place_object", "args": {"object": "remote", "location": "living_room"}}
+{"id": "place-04", "text": "Stell die Flasche in die Küche.", "tool": "place_object", "args": {"object": "bottle", "location": "kitchen"}}
+{"id": "bat-01", "text": "How much battery do you have left?", "tool": "get_battery_status", "args": {}}
+{"id": "bat-02", "text": "Are you running low on power?", "tool": "get_battery_status", "args": {}}
+{"id": "bat-03", "text": "Wie voll ist dein Akku?", "tool": "get_battery_status", "args": {}}
+{"id": "stop-01", "text": "Stop!", "tool": "stop", "args": {}}
+{"id": "stop-02", "text": "Halt, don't move, there's a child in the way!", "tool": "stop", "args": {}}
+{"id": "stop-03", "text": "Freeze right now.", "tool": "stop", "args": {}}
+{"id": "chat-01", "text": "Hi, how are you today?", "tool": null, "args": {}}
+{"id": "chat-02", "text": "What is the capital of Germany?", "tool": null, "args": {}}
+{"id": "chat-03", "text": "Tell me a short joke.", "tool": null, "args": {}}
+{"id": "chat-04", "text": "Thanks, that's all for now.", "tool": null, "args": {}}
+{"id": "chat-05", "text": "Danke schön!", "tool": null, "args": {}}

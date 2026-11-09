@@ -1,0 +1,10 @@
+model,prompt,ttft_s,total_s,output_tokens,tokens_per_s
+llama3.1,Explain in about 150 words how a mobile ,0.205,1.32,164,147.08
+llama3.1,Write a short checklist (8 items) for sa,0.084,2.219,300,140.51
+llama3.1,Describe the difference between local an,0.164,1.418,178,141.91
+qwen3-4b,Explain in about 150 words how a mobile ,0.406,15.305,174,11.68
+qwen3-4b,Write a short checklist (8 items) for sa,0.263,23.699,267,11.39
+qwen3-4b,Describe the difference between local an,0.269,11.614,130,11.46
+mistral,Explain in about 150 words how a mobile ,1.06,44.708,169,3.87
+mistral,Write a short checklist (8 items) for sa,0.918,61.677,236,3.88
+mistral,Describe the difference between local an,0.69,36.487,139,3.88
